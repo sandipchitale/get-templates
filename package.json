@@ -11,7 +11,7 @@
     "pkg-win": "npx pkg -t node16-win-x64 --out-path get-templates .",
     "pkg-linux": "npx pkg -t node16-linux-x64 --out-path get-templates .",
     "pkg": "npx tsc && npm run pkg-win && npm run pkg-linux",
-    "postpkg": "shx cp plugin.yaml dist",
+    "postpkg": "shx cp plugin.yaml get-templates && shx cp LICENSE get-templates",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sandip Chitale <sandipchitale@gmail.com>",
