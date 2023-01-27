@@ -1,14 +1,15 @@
-# Kubectl plugin - helm
+# Helm plugin - get-templates
 
 This ```helm``` plugin supports the following custom ```helm``` commands.
 
 ## Custom helm commands
 
 ```
-helm get-templates [--code] RELEASENAME [--revision n] [--namespace NAMESPACENAME]
+helm get-templates [--code] RELEASENAME [--revision n] [-n NAMESPACENAME]
 ```
 
 --code option specifies to use VSCode to show the templates.
+
 ## Building
 
 ```

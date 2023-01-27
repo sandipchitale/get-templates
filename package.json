@@ -1,6 +1,6 @@
 {
   "name": "get-templates",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Helm plugin to get templates for a release. E.g. get templates RELEASENAME [--revision N]",
   "license": "SEE LICENSE IN LICENCE",
   "main": "out/main.js",

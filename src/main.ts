@@ -9,9 +9,9 @@ import * as child_process from 'child_process';
 
 
 const getTemplatesUsage = `
-get-templates (v0.0.4)
+get-templates (v0.0.6)
 
-helm get-templates RELEASE_NAME [--revision REVISION] [--namespace NAMESPACE]]
+helm get-templates RELEASE_NAME [--revision REVISION] [-n NAMESPACE]]
 
 --code option specifies to use VSCode to show the templates.
 `;
@@ -24,7 +24,7 @@ helm get-templates RELEASE_NAME [--revision REVISION] [--namespace NAMESPACE]]
         const code = optsAndCommands.code || false;
 
         // namespace if a keyword, use a different name for the constant
-        const ns = optsAndCommands['namespace'];
+        const ns = optsAndCommands.n;
 
         const release = optsAndCommands._[0];
 

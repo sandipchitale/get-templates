@@ -1,5 +1,5 @@
 name: "get-templates"
-version: 0.0.5
+version: 0.0.6
 usage: "helm get-templates RELEASENAME [--revision n] [--namespace NAMESPACENAME]"
 description: |-
   "Get templates for helm release e.g. helm get-templates RELEASENAME [--revision N] [--namespace NAMESPACES]"
