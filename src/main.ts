@@ -7,12 +7,19 @@ import * as zlib from 'zlib';
 import * as child_process from 'child_process';
 
 
+const getTemplatesUsage = `
+get-templates (v0.0.3)
+
+helm get-templates RELEASE_NAME [--revision REVISION] [--namespace NAMESPACE]]\n
+`;
+
 (async () => {
     let rest = process.argv.slice(2);
     let optsAndCommands = minimist(rest);
     if (optsAndCommands._.length === 1) {
 
-        const namespace = optsAndCommands.namespace;
+        // namespace if a keyword, use a different name for the constant
+        const ns = optsAndCommands['namespace'];
 
         const release = optsAndCommands._[0];
 
@@ -20,7 +27,7 @@ import * as child_process from 'child_process';
         let revision = optsAndCommands.revision; // start with default
         if (!revision) {
             revision = 1;
-            const helmList = child_process.execSync(`helm list ${namespace ? `-n ${namespace}` : ''} -o json`, {
+            const helmList = child_process.execSync(`helm list ${ns ? `-n ${ns}` : ''} -o json`, {
                 encoding: 'utf8'
             });
             if (helmList) {
@@ -38,7 +45,7 @@ import * as child_process from 'child_process';
 
         const secretName = `sh.helm.release.v1.${release}.v${revision}`;
         try {
-            const secretBuffer = child_process.execSync(`kubectl get secret ${secretName} -o go-template="{{.data.release | base64decode }}" ${namespace ? `-n ${namespace}` : ''}`, {
+            const secretBuffer = child_process.execSync(`kubectl get secret ${secretName} -o go-template="{{.data.release | base64decode }}" ${ns ? `-n ${ns}` : ''}`, {
                 encoding: 'utf8'
             });
             if (secretBuffer) {
@@ -52,7 +59,7 @@ import * as child_process from 'child_process';
                         template.data = templateString;
                     });
                     templates = templates.split('\\n').join('\n');
-                    console.log(`# Templates for release: ${release} revision: ${revision} ${namespace ? ` in namespace ${namespace}` : ' in current namespace'}\n${templates}`);
+                    console.log(`# templates for release: ${release} revision: ${revision} ${ns ? ` in namespace ${ns}` : ' in current namespace'}\n${templates}`);
                 } catch (e) {
                 }
             } else {
@@ -64,7 +71,7 @@ import * as child_process from 'child_process';
             return;
         }
     } else {
-        const getTemplatesUsage = `The Kubernetes package manager custome commands:\n\nget templates RELEASE_NAME [--revision REVISION] [--namespace NAMESPACE]]\n`;
+
         console.info(getTemplatesUsage);
     }
 })();
