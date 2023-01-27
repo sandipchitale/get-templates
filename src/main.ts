@@ -8,15 +8,19 @@ import * as child_process from 'child_process';
 
 
 const getTemplatesUsage = `
-get-templates (v0.0.3)
+get-templates (v0.0.4)
 
-helm get-templates RELEASE_NAME [--revision REVISION] [--namespace NAMESPACE]]\n
+helm get-templates RELEASE_NAME [--revision REVISION] [--namespace NAMESPACE]]
+
+--code option specifies to use VSCode to show the templates.
 `;
 
 (async () => {
     let rest = process.argv.slice(2);
     let optsAndCommands = minimist(rest);
     if (optsAndCommands._.length === 1) {
+
+        const code = optsAndCommands.code || false;
 
         // namespace if a keyword, use a different name for the constant
         const ns = optsAndCommands['namespace'];
@@ -59,7 +63,14 @@ helm get-templates RELEASE_NAME [--revision REVISION] [--namespace NAMESPACE]]\n
                         template.data = templateString;
                     });
                     templates = templates.split('\\n').join('\n');
-                    console.log(`# templates for release: ${release} revision: ${revision} ${ns ? ` in namespace ${ns}` : ' in current namespace'}\n${templates}`);
+                    templates = `# templates for release: ${release} revision: ${revision} ${ns ? ` in namespace ${ns}` : ' in current namespace'}\n${templates}`
+                    if (code) {
+                        const templatesFilePath = path.join(os.tmpdir(), `helm-templates-${release}-${revision}.yaml`);
+                        fs.writeFileSync(templatesFilePath, templates);
+                        child_process.execSync(`code -r ${templatesFilePath}`);
+                    } else {
+                        console.info(templates);
+                    }
                 } catch (e) {
                 }
             } else {
