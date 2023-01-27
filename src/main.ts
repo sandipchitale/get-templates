@@ -11,7 +11,7 @@ import * as child_process from 'child_process';
 const getTemplatesUsage = `
 get-templates (v0.0.6)
 
-helm get-templates RELEASE_NAME [--revision REVISION] [-n NAMESPACE]]
+helm get-templates RELEASE_NAME [--revision REVISION] [--n NAMESPACE]]
 
 --code option specifies to use VSCode to show the templates.
 `;

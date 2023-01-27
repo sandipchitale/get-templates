@@ -1,8 +1,8 @@
 name: "get-templates"
-version: 0.0.6
-usage: "helm get-templates RELEASENAME [--revision n] [--namespace NAMESPACENAME]"
+version: 0.0.7
+usage: "helm get-templates RELEASENAME [--revision n] [--n NAMESPACENAME]"
 description: |-
-  "Get templates for helm release e.g. helm get-templates RELEASENAME [--revision N] [--namespace NAMESPACES]"
+  "Get templates for helm release e.g. helm get-templates RELEASENAME [--revision N] [--n NAMESPACES]"
 platformCommand:
   - os: linux
     arch: amd64
