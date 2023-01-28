@@ -9,7 +9,7 @@ import * as child_process from 'child_process';
 
 
 const getTemplatesUsage = `
-get-templates (v0.0.6)
+get-templates (v0.0.8)
 
 helm get-templates RELEASE_NAME [--revision REVISION] [--n NAMESPACE]]
 
