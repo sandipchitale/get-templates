@@ -1,6 +1,6 @@
 {
   "name": "get-templates",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Helm plugin to get templates for a release. E.g. get templates RELEASENAME [--revision N]",
   "license": "SEE LICENSE IN LICENCE",
   "main": "out/main.js",
@@ -8,8 +8,8 @@
   "scripts": {
     "start": "node out/main.js",
     "start-debug": "node --inspect-brk out/main.js",
-    "pkg-win": "npx pkg -t node16-win-x64 --out-path helm-get-templates-windows-amd64/get-templates .",
-    "pkg-linux": "npx pkg -t node16-linux-x64 --out-path helm-get-templates-linux-amd64/get-templates .",
+    "pkg-win": "npx pkg -t node16-win-x64 --out-path helm-get-templates-windows-amd64/get-templates/bin .",
+    "pkg-linux": "npx pkg -t node16-linux-x64 --out-path helm-get-templates-linux-amd64/get-templates/bin .",
     "pkg": "npx tsc && npm run pkg-win && npm run pkg-linux",
     "postpkg": "shx mkdir -p helm-get-templates-windows-amd64/get-templates && shx mkdir -p helm-get-templates-linux-amd64/get-templates && shx cp plugin.yaml LICENSE README.md helm-get-templates-windows-amd64/get-templates && shx cp plugin.yaml LICENSE README.md helm-get-templates-linux-amd64/get-templates",
     "test": "echo \"Error: no test specified\" && exit 1"

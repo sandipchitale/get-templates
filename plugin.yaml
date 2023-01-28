@@ -1,12 +1,12 @@
 name: "get-templates"
-version: 0.0.8
+version: 0.0.9
 usage: "helm get-templates RELEASENAME [--revision n] [--n NAMESPACENAME]"
 description: |-
   "Get templates for helm release e.g. helm get-templates RELEASENAME [--revision N] [--n NAMESPACES]"
 platformCommand:
   - os: linux
     arch: amd64
-    command: "$HELM_PLUGIN_DIR/get-templates"
+    command: "$HELM_PLUGIN_DIR/bin/get-templates"
   - os: windows
     arch: amd64
-    command: "$HELM_PLUGIN_DIR\\get-templates.exe"
+    command: "$HELM_PLUGIN_DIR\\bin\\get-templates.exe"
