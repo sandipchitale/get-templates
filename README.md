@@ -32,8 +32,10 @@ helm plugin list
 
 ## Installation of the plugin
 
-Once the plugin is available on [krew-index](), install it like this:
+DOwnload and extract the archive for your platform, extract it, cd to that folder and then install it using:
 
 ```
-helm install get-templates
+helm plugin install .
 ```
+
+You may have to run this command from administrator cmd window.
